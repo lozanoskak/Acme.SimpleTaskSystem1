@@ -1,0 +1,50 @@
+﻿@using Acme.SimpleTaskSystem.Web.Startup
+@model Acme.SimpleTaskSystem.Web.Models.Tasks.IndexViewModel
+
+@section scripts{
+    <environment names="Development">
+        <script src="~/js/views/tasks/index.js"></script>
+        <script src="~/js/views/tasks/create.js"></script>
+    </environment>
+    <environment names="Staging,Production">
+        <script src="~/js/views/tasks/index.min.js"></script>
+    
+    
+    </environment>
+}
+@{
+    ViewBag.Title = L("TaskList");
+    ViewBag.ActiveMenu = PageNames.TaskList;
+}
+<a class="btn btn-primary btn-sm" asp-action="Create">@L("AddNew")</a>
+
+<h2>@L("TaskList")
+<span class="pull-right">
+    @Html.DropDownListFor(
+        model=>model.SelectedTaskState,
+        Model.GetTasksStateSelectListItems(LocalizationManager),
+        new{
+            @class="form-control",
+            id="TaskStateCombobox"
+        }
+    )
+</span>
+</h2>
+
+<div class="row">
+    <div>
+        <ul class="list-group" id="TaskList">
+            @foreach(var task in Model.Tasks)
+            {
+                <li class="list-group-item">
+                    <span class=" pull-right label @Model.GetTaskLabel(task)"> @L($"TaskState_{task.State}") </span>
+                    <h4 class="list-group-item-heading">@task.Title</h4>
+                    <div class="list-group-item-text">
+                        @task.CreationTime.ToString("yyyy-MM-dd HH:mm:ss") | @(task.AssignedPersonName?? L("Unassigned"))
+                    </div>
+                </li>
+            }
+
+        </ul>
+    </div>
+</div>

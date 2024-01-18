@@ -17,5 +17,6 @@ namespace Acme.SimpleTaskSystem.Tasks.Dtos
         [StringLength(Task.MaxDescriptionLength)]
         public string Description { get; set; }
         public Guid? AssignedPersonId { get; set; }
+        public int CreatorId { get; set; }  
     }
 }

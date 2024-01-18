@@ -15,6 +15,16 @@
     "NewTask": "New Task",
     "AssignedPerson": "Assigned Person",
     "AddNew":  "Add New",
-    "Save": "Save"
+    "Save": "Save",
+    "Login": "Log In",
+    "Username": "Username",
+    "Password": "Password",
+    "Register": "Register",
+    "FirstName": "First Name",
+    "LastName": "Last Name",
+    "Details": "Details",
+    "Task": "Task",
+    "EditTask": "Edit Task",
+    "Edit": "Edit"
   }
 }

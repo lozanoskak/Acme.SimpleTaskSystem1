@@ -14,6 +14,7 @@
     <ProjectReference Include="..\Acme.SimpleTaskSystem.Core\Acme.SimpleTaskSystem.Core.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Abp.AspNetCore.SignalR" Version="9.0.0" />
     <PackageReference Include="Abp.EntityFrameworkCore" Version="9.0.0" />
     <PackageReference Include="Abp.AutoMapper" Version="9.0.0" />
   </ItemGroup>

@@ -2,21 +2,19 @@
 @model Acme.SimpleTaskSystem.Web.Models.Tasks.IndexViewModel
 
 @section scripts{
+   @*  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script> *@
+
     <environment names="Development">
         <script src="~/js/views/tasks/index.js"></script>
-        <script src="~/js/views/tasks/create.js"></script>
-    </environment>
-    <environment names="Staging,Production">
-        <script src="~/js/views/tasks/index.min.js"></script>
-    
-    
+       @*  <script src="~/js/views/tasks/create.js"></script>
+        <script src="~/js/views/tasks/taskDetails.js"></script> *@
     </environment>
 }
 @{
     ViewBag.Title = L("TaskList");
     ViewBag.ActiveMenu = PageNames.TaskList;
 }
-<a class="btn btn-primary btn-sm" asp-action="Create">@L("AddNew")</a>
+<a class="btn btn-primary btn-sm" asp-action="Login">@L("AddNew")</a>
 
 <h2>@L("TaskList")
 <span class="pull-right">
@@ -36,9 +34,10 @@
         <ul class="list-group" id="TaskList">
             @foreach(var task in Model.Tasks)
             {
-                <li class="list-group-item">
-                    <span class=" pull-right label @Model.GetTaskLabel(task)"> @L($"TaskState_{task.State}") </span>
-                    <h4 class="list-group-item-heading">@task.Title</h4>
+                <li class="list-group-item task">
+                     <a asp-controller="Tasks" asp-action="Details" asp-route-taskId="@task.Id" class="btn bg-primary pull-right details" > @L("Details")</a>
+                     <span class=" pull-right label @Model.GetTaskLabel(task)"> @L($"TaskState_{task.State}") </span>
+                    <h4 class="list-group-item-heading">@task.Title</h4> 
                     <div class="list-group-item-text">
                         @task.CreationTime.ToString("yyyy-MM-dd HH:mm:ss") | @(task.AssignedPersonName?? L("Unassigned"))
                     </div>

@@ -1,5 +1,8 @@
 ﻿using System.IO;
+using Acme.SimpleTaskSystem.Hubs;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Acme.SimpleTaskSystem.Web.Startup
 {
@@ -15,6 +18,7 @@ namespace Acme.SimpleTaskSystem.Web.Startup
                 .Build();
 
             host.Run();
+            
         }
     }
 }

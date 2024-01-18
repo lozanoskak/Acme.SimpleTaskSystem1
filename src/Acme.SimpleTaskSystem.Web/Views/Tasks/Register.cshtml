@@ -1,0 +1,34 @@
+﻿@using Acme.SimpleTaskSystem.Web.Models.Users
+
+@model RegisterViewModel
+
+@section scripts{
+    <environment names="Development">
+        <script src="~/js/views/users/registerUser.js"></script>
+    </environment>
+}
+
+<h2>
+    @L("Register")
+</h2>
+
+<form id="RegisterForm" method="post">
+    <div class="form-group">
+        <label for="FirstName">@L("FirstName")</label>
+        <input type="text" name="FirstName" class="form-control" id="fname" />
+    </div>
+    <div class="form-group">
+        <label for="LasName">@L("LastName")</label>
+        <input type="text" name="LastName" class="form-control" id="lname" />
+    </div>
+    <div class="form-group">
+        <label for="Username">@L("Username")</label>
+        <input type="text" name="Username" class="form-control" id="username" />
+    </div>
+    <div class="form-group">
+        <label for="Password">@L("Password")</label>
+        <input type="text" name="Password" class="form-control" id="password" />
+    </div>
+
+    <button asp-controller="Tasks" asp-action="Register1" type="submit" class="btn btn-default">@L("Register")</button>
+</form>

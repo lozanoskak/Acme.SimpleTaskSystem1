@@ -1,0 +1,25 @@
+﻿@using Acme.SimpleTaskSystem.Web.Models.Users
+
+@model LoginViewModel
+
+@{
+    <environment names="Development">
+        <script src="~/js/views/users/UserLogin.js"></script>"
+    </environment>
+}
+
+<h2>
+    @L("Login")
+</h2>
+
+<form id="LoginForm" method="post">
+    <div class="form-group">
+        <label for="Username">@L("Username")</label>
+        <input type="text" name="Username" class="form-control" id="username" />
+    </div>
+    <div class="form-group">
+        <label for="Password">@L("Password")</label>
+        <input type="text" name="Password" class="form-control" id="password" />
+    </div>
+    <button asp-controller="Tasks" asp-action="Login" type="submit" class="btn btn-default">@L("Login")</button>
+</form>

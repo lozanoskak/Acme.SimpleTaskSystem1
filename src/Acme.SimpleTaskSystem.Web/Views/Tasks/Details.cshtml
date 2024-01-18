@@ -1,0 +1,21 @@
+﻿@using Acme.SimpleTaskSystem.Web.Models.Tasks
+
+
+@model DetailsViewModel
+
+@section scripts{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/8.0.0/signalr.min.js"></script>
+    <script src="~/js/signalr/signalR.js"></script>
+
+}
+<h2 class="fw-bold ">@L("Task")</h2>
+<h3 id="title">@Model.Title</h3>
+
+<h4 id="desc"class="text-muted">@Model.Description</h4>
+<div>
+    <p class="font-italic">
+   @*  @Model.CreationTime.ToString("yyyy-MM-dd HH:mm:ss") | @(Model.AssignedPersonName ?? L("Unassigned"))  *@
+    </p>
+    <a asp-controller="Tasks" asp-action="Edit" asp-route-taskId="@Model.TaskId" class="btn bg-primary pull-right details"> @L("Edit")</a>
+</div>
+    

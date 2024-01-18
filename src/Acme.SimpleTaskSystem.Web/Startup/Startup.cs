@@ -3,11 +3,17 @@ using Abp.AspNetCore;
 using Abp.Castle.Logging.Log4Net;
 using Abp.EntityFrameworkCore;
 using Acme.SimpleTaskSystem.EntityFrameworkCore;
+using Acme.SimpleTaskSystem.EventHandlers;
+using Acme.SimpleTaskSystem.Hubs;
+
+//using Acme.SimpleTaskSystem.Session;
 using Castle.Facilities.Logging;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
@@ -35,6 +41,12 @@ namespace Acme.SimpleTaskSystem.Web.Startup
             {
                 options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
             }).AddNewtonsoftJson();
+
+            services.AddScoped<TaskModifiedEventHandler>();
+
+            services.AddSignalR();
+            
+            
 
             //Configure Abp and Dependency Injection
             return services.AddAbp<SimpleTaskSystemWebModule>(options =>
@@ -69,7 +81,10 @@ namespace Acme.SimpleTaskSystem.Web.Startup
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapHub<TaskHub>("/taskHub");
             });
+           
+            
         }
     }
 }
